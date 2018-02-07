@@ -63,8 +63,13 @@
     };
 
     var cssToString = function(css){
-        var cssArray = [];
+        if (typeof css === 'string' || css instanceof String)
+            return css;
 
+        if (Array.isArray(css))
+            return css.join('');
+
+        var cssArray = [];
         for(var property in css) {
             if (css.hasOwnProperty(property)) {
                 cssArray.push(property + ': ' + css[property] + ';');
